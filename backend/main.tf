@@ -26,3 +26,9 @@ resource "azurerm_storage_account" "storage_account" {
   account_replication_type = "LRS"
   min_tls_version          = "TLS1_2"
 }
+
+resource "azurerm_storage_container" "storage_container" {
+  name                  = "mycontainer"
+  storage_account_name  = azurerm_storage_account.storage_account.name
+  container_access_type = "private"
+}
