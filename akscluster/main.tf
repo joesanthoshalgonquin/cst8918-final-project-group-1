@@ -3,6 +3,17 @@ provider "azurerm" {
   use_oidc = true
 }
 
+terraform {
+  required_version = "~> 1.5"
+
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "3.96.0"
+    }
+  }
+}
+
 
 resource "azurerm_kubernetes_cluster" "test_cluster" {
   name                = "test-cluster"
