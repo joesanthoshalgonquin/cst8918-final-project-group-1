@@ -5,7 +5,7 @@ provider "azurerm" {
 
 resource "azurerm_kubernetes_cluster" "test_cluster" {
   name                = "test-cluster"
-  location            = "canada-central"
+  location            = "canadacentral"
   resource_group_name = "cst8918-final-project-group-1"
   dns_prefix          = "test-cluster"
 
@@ -13,10 +13,10 @@ resource "azurerm_kubernetes_cluster" "test_cluster" {
     name                 = "default"
     node_count           = 1
     vm_size              = "Standard_B2s"
-    orchestrator_version = "1.21.2"
+    orchestrator_version = "1.29.2"
   }
 
- identity {
+  identity {
     type = "SystemAssigned"
   }
 }
@@ -24,7 +24,7 @@ resource "azurerm_kubernetes_cluster" "test_cluster" {
 
 resource "azurerm_kubernetes_cluster" "prod_cluster" {
   name                = "prod-cluster"
-  location            = "canada-central"
+  location            = "canadacentral"
   resource_group_name = "cst8918-final-project-group-1"
   dns_prefix          = "prod-cluster"
 
@@ -32,12 +32,13 @@ resource "azurerm_kubernetes_cluster" "prod_cluster" {
     name                 = "default"
     node_count           = 1
     vm_size              = "Standard_B2s"
-    orchestrator_version = "1.21.2"
-     min_count   = 1
-    max_count   = 3
+    orchestrator_version = "1.29.2"
+    enable_auto_scaling  = true
+    min_count            = 1
+    max_count            = 3
   }
 
-   identity {
+  identity {
     type = "SystemAssigned"
   }
 }

@@ -6,14 +6,14 @@ provider "azurerm" {
 resource "azurerm_container_registry" "acr" {
   name                = "acrfinalproj"
   resource_group_name = "cst8918-final-project-group-1"
-  location            = "canada-central"
+  location            = "canadacentral"
   sku                 = "Basic"
 }
 
 # AKS Clusters
 resource "azurerm_kubernetes_cluster" "aks_test" {
   name                = "aks_test_cluster"
-  location            = "canada-central"
+  location            = "canadacentral"
   resource_group_name = "cst8918-final-project-group-1"
   dns_prefix          = "aks-test-cluster-dns"
 
@@ -21,7 +21,7 @@ resource "azurerm_kubernetes_cluster" "aks_test" {
     name                 = "default"
     node_count           = 1
     vm_size              = "Standard_B2s"
-    orchestrator_version = "1.21.2"
+    orchestrator_version = "1.29.2"
   }
 
   identity {
@@ -31,7 +31,7 @@ resource "azurerm_kubernetes_cluster" "aks_test" {
 
 resource "azurerm_kubernetes_cluster" "aks_prod" {
   name                = "aks_prod_cluster"
-  location            = "canada-central"
+  location            = "canadacentral"
   resource_group_name = "cst8918-final-project-group-1"
   dns_prefix          = "aks-prod-cluster-dns"
 
@@ -39,7 +39,7 @@ resource "azurerm_kubernetes_cluster" "aks_prod" {
     name                 = "default"
     node_count           = 1
     vm_size              = "Standard_B2s"
-    orchestrator_version = "1.21.2"
+    orchestrator_version = "1.29.2"
   }
 
   identity {
@@ -49,18 +49,18 @@ resource "azurerm_kubernetes_cluster" "aks_prod" {
 
 # Redis Cache
 resource "azurerm_redis_cache" "redis_test" {
-  name                = "test_db"
+  name                = "redistestdb"
   resource_group_name = "cst8918-final-project-group-1"
-  location            = "canada-central"
+  location            = "canadacentral"
   sku_name            = "Standard"
   capacity            = 1
   family              = "C"
 }
 
 resource "azurerm_redis_cache" "redis_prod" {
-  name                = "prod_db"
+  name                = "proddb"
   resource_group_name = "cst8918-final-project-group-1"
-  location            = "canada-central"
+  location            = "canadacentral"
   sku_name            = "Standard"
   capacity            = 1
   family              = "C"
