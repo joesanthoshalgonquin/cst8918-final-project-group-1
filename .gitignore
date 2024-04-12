@@ -1,5 +1,4 @@
 **/.terraform
 /**/terraform.tfstate
-
-# backend
-/backend/tf-backend.plan
+/**/terraform.tfstate.backup
+/**/**.plan

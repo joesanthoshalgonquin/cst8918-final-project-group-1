@@ -17,7 +17,7 @@ terraform {
 
 resource "azurerm_resource_group" "network" {
   name     = "cst8918-final-project-group-${var.group_number}"
-  location = "East US"  # Set your desired Azure region
+  location = "canadacentral" # Set your desired Azure region
 }
 
 resource "azurerm_virtual_network" "main" {
@@ -30,9 +30,9 @@ resource "azurerm_virtual_network" "main" {
 
 # Create subnets
 resource "azurerm_subnet" "subnets" {
-  for_each            = var.subnets
-  name                = each.key
+  for_each             = var.subnets
+  name                 = each.key
   virtual_network_name = azurerm_virtual_network.main.name
-  resource_group_name = azurerm_resource_group.network.name
-  address_prefixes      = [each.value]
+  resource_group_name  = azurerm_resource_group.network.name
+  address_prefixes     = [each.value]
 }
