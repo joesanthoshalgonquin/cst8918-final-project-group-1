@@ -19,6 +19,20 @@ resource "azurerm_kubernetes_cluster" "test_cluster" {
   identity {
     type = "SystemAssigned"
   }
+
+  network_profile {
+    network_policy = "azure"
+    network_plugin = "azure"
+  }
+
+  api_server_access_profile {
+    authorized_ip_ranges = ["10.0.0.0/14"]
+  }
+
+  azure_active_directory_role_based_access_control {
+    managed            = true
+    azure_rbac_enabled = true
+  }
 }
 
 
@@ -40,6 +54,20 @@ resource "azurerm_kubernetes_cluster" "prod_cluster" {
 
   identity {
     type = "SystemAssigned"
+  }
+
+  network_profile {
+    network_policy = "azure"
+    network_plugin = "azure"
+  }
+
+  api_server_access_profile {
+    authorized_ip_ranges = ["10.0.0.0/14"]
+  }
+
+  azure_active_directory_role_based_access_control {
+    managed            = true
+    azure_rbac_enabled = true
   }
 }
 
