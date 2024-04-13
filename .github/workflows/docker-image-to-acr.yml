@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - "./application" # Adjust this to match the directory where your application code is stored
+      - "application/**"
 
 jobs:
   build_and_push:
