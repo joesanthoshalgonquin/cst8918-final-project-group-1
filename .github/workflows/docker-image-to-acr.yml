@@ -1,0 +1,52 @@
+name: Build and Push Docker Image on PR to main
+
+on:
+  pull_request:
+    branches:
+      - main
+
+defaults:
+  run:
+    working-directory: ./remix
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 1.0.0
+
+    - name: Initialize Terraform
+      run: terraform init
+      
+    - name: Apply Terraform Changes
+      run: terraform apply -auto-approve
+      
+    - name: Get ACR Outputs
+      run: |
+        export ACR_SERVER=$(terraform output -raw acr_server)
+        export ACR_USERNAME=$(terraform output -raw acr_username)
+        export ACR_PASSWORD=$(terraform output -raw acr_password)
+      
+    - name: Login to Azure Container Registry
+      uses: azure/docker-login@v1
+      with:
+        login-server: ${{ env.ACR_SERVER }}
+        username: ${{ env.ACR_USERNAME }}
+        password: ${{ env.ACR_PASSWORD }}
+      
+    - name: Determine if Dockerfile has changed
+      id: dockerfile_changed
+      run: echo "::set-output name=changed::$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep Dockerfile)"
+
+    - name: Build and push Docker image
+      if: steps.dockerfile_changed.outputs.changed == 'Dockerfile'
+      run: |
+        docker build -t ${{ env.ACR_SERVER }}/weather-app:${{ github.sha }} .
+        docker push ${{ env.ACR_SERVER }}/weather-app:${{ github.sha }}
