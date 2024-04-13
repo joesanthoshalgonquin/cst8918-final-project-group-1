@@ -23,29 +23,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: 1.0.0
-
-      - name: Initialize Terraform
-        run: terraform init
-
-      - name: Apply Terraform Changes
-        run: terraform apply -auto-approve
-
       - name: Get ACR Outputs
         run: |
           export ACR_SERVER=$(terraform output -raw acr_server)
           export ACR_USERNAME=$(terraform output -raw acr_username)
           export ACR_PASSWORD=$(terraform output -raw acr_password)
 
-      # - name: Login to Azure Container Registry
-      #   uses: azure/docker-login@v1
-      #   with:
-      #     login-server: ${{ secrets.ACR_SERVER }}
-      #     username: ${{ secrets.ACR_USERNAME }}
-      #     password: ${{ secrets.ACR_PASSWORD }}
+      - name: Login to Azure Container Registry
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.ACR_SERVER }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
 
       - name: Determine if Dockerfile has changed
         id: dockerfile_changed
