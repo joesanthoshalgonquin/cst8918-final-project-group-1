@@ -3,3 +3,4 @@
 /**/terraform.tfstate.backup
 /**/**.plan
 /**/.terraform.tfstate.lock.info
+/**/node_modules/
