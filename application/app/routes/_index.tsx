@@ -15,11 +15,11 @@ export const meta: MetaFunction = () => {
 }
 
 const location = {
-  city: 'Ottawa',
-  postalCode: 'K2G 1V8', // Algonquin College, Woodroffe Campus
-  lat: 45.3211,
-  lon: -75.7391,
-  countryCode: 'CA'
+  city: 'Shibuya',
+  postalCode: '150-0002', // Algonquin College, Woodroffe Campus
+  lat: 35.658514,
+  lon: 139.70133,
+  countryCode: 'JP'
 }
 const units = 'metric'
 
