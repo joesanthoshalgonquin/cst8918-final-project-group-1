@@ -50,7 +50,7 @@ export default function CurrentConditions() {
         <h1>Remix Weather</h1>
         <p>
           For Algonquin College, Woodroffe Campus <br />
-          <span style={{color: 'hsl(220, 23%, 60%)'}}>
+          <span style={{color: 'hsl(220, 24%, 60%)'}}>
             (LAT: {location.lat}, LON: {location.lon})
           </span>
         </p>
