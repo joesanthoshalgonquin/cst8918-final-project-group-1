@@ -44,7 +44,7 @@ export default function CurrentConditions() {
         style={{
           padding: '1.5rem',
           fontFamily: 'system-ui, sans-serif',
-          lineHeight: '1.8'
+          lineHeight: '1.9'
         }}
       >
         <h1>Remix Weather</h1>
