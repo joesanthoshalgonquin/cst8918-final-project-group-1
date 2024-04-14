@@ -60,7 +60,8 @@ export default function CurrentConditions() {
             display: 'flex',
             flexDirection: 'row',
             gap: '2rem',
-            alignItems: 'center'
+            alignItems: 'center',
+            color: 'red'
           }}
         >
           <img src={getWeatherIconUrl(weather.icon)} alt="" />
