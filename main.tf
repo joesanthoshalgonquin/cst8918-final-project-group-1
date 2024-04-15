@@ -12,12 +12,15 @@ terraform {
       version = "3.96.0"
     }
   }
-}
 
-module "backend" {
-  source = "./backend"
+  backend "azurerm" {
+    resource_group_name  = "sant0232-final-project-rg"
+    storage_account_name = "sant0232finalprojstorage"
+    container_name       = "tfstate"
+    key                  = "prod.app.tfstate"
+    use_oidc             = true
+  }
 }
-
 module "network" {
   source = "./network"
 }
