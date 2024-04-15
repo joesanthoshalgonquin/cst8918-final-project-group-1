@@ -22,7 +22,7 @@ jobs:
         uses: azure/docker-login@v1
         with:
           login-server: ${{ secrets.ACR_SERVER }}
-          username: ${{ secrets.ACR_USERNAME }}
+          username: ${{ secrets.AZURE_CLIENT_ID }}
           password: ${{ secrets.ACR_PASSWORD }}
 
       - name: Extract metadata (tags, labels)
@@ -36,7 +36,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: ./application
           file: ./application/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}

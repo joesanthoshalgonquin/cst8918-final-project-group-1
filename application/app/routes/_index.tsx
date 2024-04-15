@@ -44,13 +44,13 @@ export default function CurrentConditions() {
         style={{
           padding: '1.5rem',
           fontFamily: 'system-ui, sans-serif',
-          lineHeight: '1.8'
+          lineHeight: '1.9'
         }}
       >
         <h1>Remix Weather</h1>
         <p>
           For Algonquin College, Woodroffe Campus <br />
-          <span style={{color: 'hsl(220, 23%, 60%)'}}>
+          <span style={{color: 'hsl(220, 24%, 59%)'}}>
             (LAT: {location.lat}, LON: {location.lon})
           </span>
         </p>
@@ -60,7 +60,8 @@ export default function CurrentConditions() {
             display: 'flex',
             flexDirection: 'row',
             gap: '2rem',
-            alignItems: 'center'
+            alignItems: 'center',
+            color: 'blue'
           }}
         >
           <img src={getWeatherIconUrl(weather.icon)} alt="" />
