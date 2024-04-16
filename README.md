@@ -7,6 +7,11 @@
 - Nirmal Ghosh Ozhithiparambil Lalappan (Github: https://github.com/nirmal-ghosh)
 - Abdelrahman Mostafa (Github: https://github.com/most0032)
 
+## Notes
+
+- The docker push workflow is throwing an error that it isn't able to access the resource. I had AcrPush assignment set but it still wasn't deploying.
+  ![plot](./screenshots/access_denied.png)
+
 ## Screenshots
 
 - Workflows on Pull request to main
