@@ -9,8 +9,11 @@
 
 ## Screenshots
 
-- Workflow on Pull request to main
+- Workflows on Pull request to main
   ![plot](./screenshots/workflow_on_pr_to_main.png)
 
-- Workflow on Merge changes to main
+- Workflows on Merge changes to main
   ![plot](./screenshots/workflow_after_merge.png)
+
+- Static Test Workflow on Push to a branch
+  ![plot](./screenshots/workflow_on_push_to_branch.png)
