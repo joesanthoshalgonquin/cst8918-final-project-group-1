@@ -35,6 +35,7 @@ resource "azurerm_kubernetes_cluster" "aks_test" {
     node_count           = 1
     vm_size              = "Standard_B2s"
     orchestrator_version = "1.29.2"
+    vnet_subnet_id       = var.test_subnet_id
   }
 
   identity {
@@ -65,6 +66,10 @@ resource "azurerm_kubernetes_cluster" "aks_prod" {
     node_count           = 1
     vm_size              = "Standard_B2s"
     orchestrator_version = "1.29.2"
+    enable_auto_scaling  = true
+    vnet_subnet_id       = var.prod_subnet_id
+    min_count            = 1
+    max_count            = 3
   }
 
   identity {
@@ -73,6 +78,8 @@ resource "azurerm_kubernetes_cluster" "aks_prod" {
 
   network_profile {
     network_policy = "azure"
+    service_cidr   = "10.3.0.0/24"
+    dns_service_ip = "10.3.0.10"
     network_plugin = "azure"
   }
 
@@ -92,6 +99,7 @@ resource "azurerm_redis_cache" "redis_test" {
   sku_name            = "Standard"
   capacity            = 1
   family              = "C"
+  subnet_id           = var.test_subnet_id
 }
 
 resource "azurerm_redis_cache" "redis_prod" {
@@ -101,6 +109,7 @@ resource "azurerm_redis_cache" "redis_prod" {
   sku_name            = "Standard"
   capacity            = 1
   family              = "C"
+  subnet_id           = var.prod_subnet_id
 }
 
 # Kubernetes Deployment and Service

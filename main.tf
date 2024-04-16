@@ -12,23 +12,16 @@ terraform {
       version = "3.96.0"
     }
   }
-
-  backend "azurerm" {
-    resource_group_name  = "sant0232-final-project-rg"
-    storage_account_name = "sant0232finalprojstorage"
-    container_name       = "tfstate"
-    key                  = "prod.app.tfstate"
-    use_oidc             = true
-  }
 }
 module "network" {
   source = "./network"
 }
 
-module "akscluster" {
-  source = "./akscluster"
-}
-
 module "remix" {
   source = "./remix"
+
+  dev_subnet_id   = module.network.dev_subnet_id
+  prod_subnet_id  = module.network.prod_subnet_id
+  test_subnet_id  = module.network.test_subnet_id
+  admin_subnet_id = module.network.admin_subnet_id
 }
