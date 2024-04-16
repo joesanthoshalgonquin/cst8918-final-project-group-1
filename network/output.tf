@@ -6,6 +6,18 @@ output "virtual_network_name" {
   value = azurerm_virtual_network.main.name
 }
 
-output "subnet_ids" {
-  value = [for _, subnet in azurerm_subnet.subnets : subnet.id]
+output "prod_subnet_id" {
+  value = azurerm_subnet.prod.id
+}
+
+output "test_subnet_id" {
+  value = azurerm_subnet.test.id
+}
+
+output "dev_subnet_id" {
+  value = azurerm_subnet.dev.id
+}
+
+output "admin_subnet_id" {
+  value = azurerm_subnet.admin.id
 }
