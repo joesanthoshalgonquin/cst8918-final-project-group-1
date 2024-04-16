@@ -17,6 +17,10 @@ module "network" {
   source = "./network"
 }
 
+module "backend" {
+  source = "./backend"
+}
+
 module "remix" {
   source = "./remix"
 
